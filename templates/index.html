@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Randome Numbers</title>
+    </head>
+    <body>
+        <h1>You will get Random Numbers Here : </h1>
+        <br>
+        <br>
+        <ul id="ul1">
+
+        </ul>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <script>
+            var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+            socket.on('numberg', function(msg) {
+                console.log("Received number" + msg.number);
+                var node = document.createElement("LI");
+                var textnode = document.createTextNode(msg.number);
+                node.appendChild(textnode);
+                document.getElementById("ul1").appendChild(node);
+            });
+        </script>
+    </body>
+</html>
